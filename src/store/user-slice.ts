@@ -13,11 +13,14 @@ export type UserActions = {
 
 export type UserSlice = UserState & UserActions;
 
-export const createUserSlice : StateCreator<UserSlice,[],[],UserSlice> = 
+export const createUserSlice : StateCreator<UserSlice,[['zustand/immer',never]],[],UserSlice> = 
 (set) => ({
     address:'',
     age: 0,
     fullName: '',
     userName: '',
-    setAdress: (addr)=>set((state)=>({...state,address:addr}))
+    setAdress: (addr)=>
+        set((state)=>{
+           state.address=addr;
+    }),
 });
