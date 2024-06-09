@@ -19,13 +19,13 @@ export function ChangeQtyButtons({ productId }: Props) {
 
   useEffect(() => {
     const unSub = useStore.subscribe(
-      //(state) => state.products,
+      (state) => state.products,
       (products) => {
         setTotal(
           products.reduce((acc, item) => acc + item.price * item.qty, 0)
         );
-      }
-      // { fireImmediately: true }
+      },
+      { fireImmediately: true }
     );
     return unSub;
   }, [setTotal]);
