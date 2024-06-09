@@ -8,7 +8,8 @@ export type UserState = {
 }
 
 export type UserActions = {
-    setAdress:(address:string)=>void;
+    setAddress:(address:string)=>void;
+    fetchUser: () => Promise<void>;
 }
 
 export type UserSlice = UserState & UserActions;
@@ -19,8 +20,17 @@ export const createUserSlice : StateCreator<UserSlice,[['zustand/immer',never]],
     age: 0,
     fullName: '',
     userName: '',
-    setAdress: (addr)=>
+    setAddress: (addr)=>
         set((state)=>{
            state.address=addr;
     }),
+    fetchUser: async () => {
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		set({
+			address: '',
+			fullName: 'Joh Doe',
+			userName: 'JohDoe@test.com',
+			age: 32,
+		});
+	},
 });
